@@ -30,7 +30,11 @@ public class Servidor {
     @WebMethod(operationName = "IniciarSesion")
     public String IniciarSesion(@WebParam(name = "id") String id, @WebParam(name = "contrasena") String contrasena) {
         //TODO write your implementation code here:
-        return "Inicio de Sesion terminado";
+        if(id.equals("admin")&&contrasena.equals("admin")){    
+            //administrador       
+            return "1";
+        }
+        return "-1";
     }
     
 }

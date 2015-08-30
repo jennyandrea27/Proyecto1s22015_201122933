@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pagina Inicio</title>
+        
     </head>
     <body>
         <h1>Bienvenido</h1>
@@ -26,7 +27,12 @@
 	java.lang.String contrasena = tbContr;
 	// TODO process result here
 	java.lang.String result = port.iniciarSesion(id, contrasena);
-	out.println(result);
+        if(result.equals("1")){//administrador
+            response.sendRedirect("PAdmin.jsp");
+        }else{
+            response.sendRedirect("IniciarSesion.jsp");
+        }
+	
     } catch (Exception ex) {
 	// TODO handle custom exceptions here
     }
