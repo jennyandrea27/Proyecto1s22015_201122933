@@ -4,31 +4,41 @@
 <xsd:import namespace="http://SW/" schemaLocation="http://localhost:8080/SWTransmetro/Servidor?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="metodo1">
-<part name="parameters" element="tns:metodo1"/>
-</message>
-<message name="metodo1Response">
-<part name="parameters" element="tns:metodo1Response"/>
-</message>
 <message name="IniciarSesion">
 <part name="parameters" element="tns:IniciarSesion"/>
 </message>
 <message name="IniciarSesionResponse">
 <part name="parameters" element="tns:IniciarSesionResponse"/>
 </message>
+<message name="AgregarAdministrador">
+<part name="parameters" element="tns:AgregarAdministrador"/>
+</message>
+<message name="AgregarAdministradorResponse">
+<part name="parameters" element="tns:AgregarAdministradorResponse"/>
+</message>
+<message name="metodo1">
+<part name="parameters" element="tns:metodo1"/>
+</message>
+<message name="metodo1Response">
+<part name="parameters" element="tns:metodo1Response"/>
+</message>
 <portType name="Servidor">
-<operation name="metodo1">
-<input wsam:Action="http://SW/Servidor/metodo1Request" message="tns:metodo1"/>
-<output wsam:Action="http://SW/Servidor/metodo1Response" message="tns:metodo1Response"/>
-</operation>
 <operation name="IniciarSesion">
 <input wsam:Action="http://SW/Servidor/IniciarSesionRequest" message="tns:IniciarSesion"/>
 <output wsam:Action="http://SW/Servidor/IniciarSesionResponse" message="tns:IniciarSesionResponse"/>
 </operation>
+<operation name="AgregarAdministrador">
+<input wsam:Action="http://SW/Servidor/AgregarAdministradorRequest" message="tns:AgregarAdministrador"/>
+<output wsam:Action="http://SW/Servidor/AgregarAdministradorResponse" message="tns:AgregarAdministradorResponse"/>
+</operation>
+<operation name="metodo1">
+<input wsam:Action="http://SW/Servidor/metodo1Request" message="tns:metodo1"/>
+<output wsam:Action="http://SW/Servidor/metodo1Response" message="tns:metodo1Response"/>
+</operation>
 </portType>
 <binding name="ServidorPortBinding" type="tns:Servidor">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="metodo1">
+<operation name="IniciarSesion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -37,7 +47,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="IniciarSesion">
+<operation name="AgregarAdministrador">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="metodo1">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

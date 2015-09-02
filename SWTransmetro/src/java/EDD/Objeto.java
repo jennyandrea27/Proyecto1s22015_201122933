@@ -3,40 +3,73 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mariomaker;
+package EDD;
 
 /**
  *
  * @author jenny
  */
 public class Objeto {
-    public String nombre,tipo,direccion;
-    public boolean bajo;
-    
-    public Objeto(String nombre,String tipo){
-        this.nombre=nombre;
-        this.tipo=tipo;        
-        this.direccion="derecha";
-        this.bajo=false;
+    public String nombre,apellido,correo,contrasena,tipo;
+    public int id;
+    /**
+     * Constructor conductor
+     * @param nombre
+     * @param apellido
+     * @param contrasena
+     * @param tipo
+     * @param id 
+     */
+    public Objeto(String nombre, String apellido, String contrasena, String tipo, int id) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.contrasena = contrasena;
+        this.tipo = tipo;
+        this.id = id;
     }
+    /**
+     * Constructor admin
+     * @param correo
+     * @param contrasena
+     * @param tipo 
+     */
+    public Objeto(String correo, String contrasena, String tipo) {
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.tipo = tipo;
+    }
+    /**
+     * Constructor Estaciones
+     * es_clave
+     * es_general
+     * @param nombre
+     * @param contrasena
+     * @param tipo
+     * @param id 
+     */
+    public Objeto(String nombre, String contrasena, String tipo, int id) {
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.tipo = tipo;
+        this.id = id;
+    }
+           
     void Imprimir(){
         System.out.println("Objeto "+this.tipo+" "+this.nombre);
     }
     public int getTipo(){
-        if(tipo.equals("suelo")){
+        if(tipo.equals("admin")){
             return 1;
-        }else if(tipo.equals("pared")){
+        }else if(tipo.equals("es_clave")){
             return 2;
-        }else if(tipo.equals("goomba")){
+        }else if(tipo.equals("es_general")){
             return 3;
-        }else if(tipo.equals("koopa")){
+        }else if(tipo.equals("conductor")){
             return 4;
-        }else if(tipo.equals("moneda")){
+        }else if(tipo.equals("bus")){
             return 5;
-        }else if(tipo.equals("hongo")){
+        }else if(tipo.equals("ruta")){
             return 6;
-        }else if(tipo.equals("castillo")){
-            return 7;
         }
     return -1;
     }

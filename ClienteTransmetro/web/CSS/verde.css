@@ -1,10 +1,54 @@
 body {
-background-color: #D7DFE2;
+background: #4eb935;
+background: -webkit-radial-gradient(top right,orange 0%, green 95%);
+background-repeat: no-repeat;
+background-attachment: fixed;
 margin:0px;
 padding:0px;
 font: 10px  verdana, arial, helvetica;
 color: #416271;
 }
+.wrap {
+	width:250px;
+	height: auto;
+	margin: auto;
+	margin-top: 5%;
+}
+.wrap input {
+	border: none;
+	background: #fff;
+        font-family:Lato ;
+        font-weight:700 ;
+	display: block;
+	height: 40px;
+	outline: none;
+	width: calc(100% - 24px) ;
+
+        margin-bottom: 5px;
+	padding: 6px 12px 6px 12px;
+}
+.wrap input[type="text"] {
+	border-radius: 7px;
+}
+.wrap input[type="password"] {
+	border-radius: 7px ;
+}
+.wrap input[type="submit"] {
+	width: 100%;
+	border-radius: 7px;
+	background: #4784f5;
+	text-decoration: center;
+	border: none;
+	color: #000000;
+        margin-top:-5px;
+	padding-top: 14px;
+	padding-bottom: 14px;        
+	outline: none;
+	font-size: 13px;	
+	border-bottom: 3px solid #307d63;
+	cursor: pointer;
+}
+
 h1{
 padding:5px 0 5px 0;
 margin:0px;
@@ -78,6 +122,7 @@ height:42px;
 padding:0px;
 clear:both;
 background-color:#416271;
+
 }
 #menu ul{
 list-style:none;
@@ -93,14 +138,14 @@ height:42px;
 padding:0px;
 line-height:42px;
 font-family:Arial, Helvetica, sans-serif; 
-font-size:13px;
+font-size:15px;
 }
 #menu ul li a{
 height:42px; 
 width: auto;
 float:left;
 text-decoration:none;
-padding:0 0 0 25px; 
+padding:0 8px 0 8px;  
 margin:0px 3px 0px 3px;
 color:#fff;
 text-align:center;
@@ -110,9 +155,8 @@ height:42px;
 width: auto;
 text-decoration:none;
 color: #fff;
-padding:0 0 0 25px; 
-background:url(CSS/Imagenes/flecha.png) no-repeat left;
-//background: #276D05;
+padding:0 8px 0 8px;   
+background: #41716a;
 }
 #menu ul li a.current{
 height:42px;
@@ -121,9 +165,8 @@ float:left;
 text-decoration:none;
 padding:0px;
 color: #fff;
-padding:0 0 0 25px; 
-background:url(CSS/Imagenes/flecha.png) no-repeat left;
-//background: #276D05;
+padding:0 8px 0 8px; 
+background: #41716a;
 }
 
 /*----------------middle green box-----------*/
@@ -131,7 +174,7 @@ background:url(CSS/Imagenes/flecha.png) no-repeat left;
 width:900px;
 height:265px;
 clear:both;
-background:url(CSS/Imagenes/green_box_bg.gif) no-repeat left #50a842;
+
 background-position:50px 0px;
 }
 .clock{
@@ -139,9 +182,9 @@ float:left;
 padding:0px;
 }
 .text_content{
-width:350px;
+width:665px;
 float:left;
-padding:20px 0 0 0;
+padding:0px;
 }
 .read_more{
 width:109px;

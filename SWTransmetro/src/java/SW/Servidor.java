@@ -8,6 +8,7 @@ package SW;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import EDD.*;
 
 /**
  *
@@ -15,7 +16,7 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "Servidor")
 public class Servidor {
-
+public ArbolAVL avl=new ArbolAVL();
     /**
      * This is a sample web service operation
      */
@@ -33,8 +34,21 @@ public class Servidor {
         if(id.equals("admin")&&contrasena.equals("admin")){    
             //administrador       
             return "1";
+        }else{
+            
         }
         return "-1";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarAdministrador")
+    public String AgregarAdministrador(@WebParam(name = "correo") String correo, @WebParam(name = "contrasena") String contrasena) {
+        //TODO write your implementation code here:
+        Objeto o=new Objeto(correo, contrasena, "admin");
+        avl.Insertar(o);        
+        return avl.GraficarAdmin();
     }
     
 }
