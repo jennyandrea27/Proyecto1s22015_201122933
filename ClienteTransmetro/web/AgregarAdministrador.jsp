@@ -24,7 +24,7 @@
 	
 	// TODO process result here
 	java.lang.String result = port.agregarAdministrador(correo, contrasena);
-	out.println("PostOrden = "+result);
+	//out.println("PostOrden = "+result);
         %><a href="Administrador.jsp">Administrador.jsp</a> <%
     } catch (Exception ex) {
 	// TODO handle custom exceptions here

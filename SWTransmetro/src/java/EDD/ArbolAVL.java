@@ -5,6 +5,9 @@
  */
 package EDD;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 /**
  *
  * @author Jenny
@@ -97,7 +100,7 @@ public class ArbolAVL {
             Objeto r=(Objeto)raiz.dato;
             switch(d.getTipo()){
                 case 1://Arbol Administradores
-                    if((r.correo.compareTo(d.correo))>0){
+                    if((r.correo.compareTo(d.correo))>0){//hijo izquierdo
                         raiz.h_izq=Insertar(raiz.h_izq,dato,b);
                         //regresar por el camino donde inicio
                         if(b.getb()){
@@ -121,7 +124,7 @@ public class ArbolAVL {
                                 default:
                             }
                         }
-                    }else if((r.correo.compareTo(d.correo))<0){
+                    }else if((r.correo.compareTo(d.correo))<0){//hijo derecho
                         raiz.h_der=Insertar(raiz.h_der,dato,b);
                         //regresar por el camino donde inicio
                         if(b.getb()){
@@ -148,7 +151,61 @@ public class ArbolAVL {
                     }else{
                         System.out.println("Correo duplicado");
                     }                    
-                    break;                    
+                    break;     
+                case 2://AVL Estaciones
+                case 3:
+                    if(r.id>d.id){//hijo izquierdo
+                        raiz.h_izq=Insertar(raiz.h_izq,dato,b);
+                        //regresar por el camino donde inicio
+                        if(b.getb()){
+                            //se decrementa fe por aumentar la rama izquierda
+                            switch(raiz.fe){
+                                case 1:
+                                    raiz.fe=0;
+                                    b.setB(false);
+                                    break;
+                                case 0:
+                                    raiz.fe=-1;
+                                    break;
+                                case -1://rotacion a la izquierda
+                                    n1=raiz.h_izq;
+                                    if(n1.fe==-1){//Izquierda-Izquierda
+                                        raiz=RotacionII(raiz, n1);
+                                    }else{//Izquierda-Derecha
+                                        raiz=RotacionID(raiz, n1);
+                                    }
+                                b.setB(false);
+                                default:
+                            }
+                        }
+                    }else if(r.id<d.id){//hijo derecho
+                        raiz.h_der=Insertar(raiz.h_der,dato,b);
+                        //regresar por el camino donde inicio
+                        if(b.getb()){
+                            //se decrementa fe por aumentar la rama derecha
+                            switch(raiz.fe){
+                                case 1://rotacion derecha
+                                    n1=raiz.h_der;
+                                    if(n1.fe==1){//Derecha-Derecha
+                                        raiz=RotacionDD(raiz, n1);
+                                    }else{//Derecha=Izquierda
+                                        raiz=RotacionDI(raiz, n1);
+                                    }
+                                    b.setB(false);
+                                    break;
+                                case 0:
+                                    raiz.fe=1;
+                                    break;
+                                case -1:
+                                    raiz.fe=0;
+                                    b.setB(false);
+                                default:
+                            }
+                        }
+                    }else{
+                        System.out.println("Correo duplicado");
+                    }                    
+                    break;
                 default:
             }
         }
@@ -170,10 +227,33 @@ public class ArbolAVL {
         }
         return s;
     }
-    public String GraficarAdmin(){
+    public void GraficarAdmin(){
         String s="";
         s+=GraficarAdmin(raiz);
-        return s;
+        GenerarDot(s);
+    }
+    private void GenerarDot(String s){
+        FileWriter dir=null;
+        PrintWriter print=null;
+        try{
+            dir=new FileWriter("C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            print=new PrintWriter(dir);
+            print.println(s);
+            print.close();
+            dir.close();            
+            GenerarPNG();
+        }catch(Exception er){
+            
+        }            
+    }
+    private void GenerarPNG(){
+        try{
+            ProcessBuilder proceso=new ProcessBuilder("C:\\Program Files\\Graphviz2.38\\bin\\dot.exe","-Tpng","-o","C:\\Users\\Jenny\\Desktop\\grafica.png","C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            proceso.redirectErrorStream(true);
+            proceso.start();
+        }catch(Exception er){
+            System.out.println(er.getMessage());    
+        }
     }
 
     public NodoAVL BuscarAdmin(String correo){    
@@ -200,18 +280,25 @@ public class ArbolAVL {
             int cont=0;
             if(nodo!=null){
                 Objeto o=(Objeto)nodo.dato;
-                s+="nodo"+o.correo+"[label=\"";                
-                s+="Correo: "+o.correo+"\n";
-                s+="Contraseña: "+o.contrasena+"\"];\n";                
+                String correo_aux=o.correo.replace('@', '_');
+                correo_aux=correo_aux.replace('.', '_');
+                s+="nodo"+correo_aux+"[label=\"";                               
+                s+=o.correo+"\"];\n";                
                 String izq= PreOrdenGraficarAdmin(nodo.h_izq);
                 if(izq!=""){
                     s+=izq;
-                    s+="nodo"+o.correo+" -> nodo"+o.correo+"h_izq"+";\n";
+                    Objeto iz=(Objeto)nodo.h_izq.dato;
+                    String correo_iz=iz.correo.replace('@', '_');
+                    correo_iz=correo_iz.replace('.', '_');
+                    s+="nodo"+correo_aux+" -> nodo"+correo_iz+";\n";
                 }
                 String der=PreOrdenGraficarAdmin(nodo.h_der);
                 if(der!=""){
                     s+=der;
-                    s+="nodo"+o.correo+" -> nodo"+o.correo+"h_der"+";\n";
+                    Objeto de=(Objeto)nodo.h_der.dato;
+                    String correo_de=de.correo.replace('@', '_');
+                    correo_de=correo_de.replace('.', '_');
+                    s+="nodo"+correo_aux+" -> nodo"+correo_de+";\n";
                 }
             }
             return s;

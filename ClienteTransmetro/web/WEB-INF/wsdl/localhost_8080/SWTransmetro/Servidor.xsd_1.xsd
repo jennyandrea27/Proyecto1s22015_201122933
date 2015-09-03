@@ -4,6 +4,10 @@
 
 <xs:element name="AgregarAdministradorResponse" type="tns:AgregarAdministradorResponse"/>
 
+<xs:element name="AgregarEstacionClave" type="tns:AgregarEstacionClave"/>
+
+<xs:element name="AgregarEstacionClaveResponse" type="tns:AgregarEstacionClaveResponse"/>
+
 <xs:element name="IniciarSesion" type="tns:IniciarSesion"/>
 
 <xs:element name="IniciarSesionResponse" type="tns:IniciarSesionResponse"/>
@@ -20,9 +24,7 @@
 </xs:complexType>
 
 <xs:complexType name="AgregarAdministradorResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="IniciarSesion">
@@ -36,6 +38,18 @@
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarEstacionClave">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarEstacionClaveResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="metodo1">

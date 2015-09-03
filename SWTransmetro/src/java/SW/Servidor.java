@@ -16,7 +16,9 @@ import EDD.*;
  */
 @WebService(serviceName = "Servidor")
 public class Servidor {
-public ArbolAVL avl=new ArbolAVL();
+public ArbolAVL avlAdmin=new ArbolAVL();
+public ArbolAVL avlEs_Clave=new ArbolAVL();
+public ArbolAVL avlEs_General=new ArbolAVL();
     /**
      * This is a sample web service operation
      */
@@ -44,11 +46,22 @@ public ArbolAVL avl=new ArbolAVL();
      * Web service operation
      */
     @WebMethod(operationName = "AgregarAdministrador")
-    public String AgregarAdministrador(@WebParam(name = "correo") String correo, @WebParam(name = "contrasena") String contrasena) {
+    public void AgregarAdministrador(@WebParam(name = "correo") String correo, @WebParam(name = "contrasena") String contrasena) {
         //TODO write your implementation code here:
         Objeto o=new Objeto(correo, contrasena, "admin");
-        avl.Insertar(o);        
-        return avl.GraficarAdmin();
+        avlAdmin.Insertar(o);        
+        avlAdmin.GraficarAdmin();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarEstacionClave")
+    public void AgregarEstacion(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {
+        //TODO write your implementation code here:
+        Objeto o=new Objeto(nombre, contrasena, "es_clave", id);
+        avlEs_Clave.Insertar(o);        
+        avlEs_Clave.GraficarAdmin();
     }
     
 }
