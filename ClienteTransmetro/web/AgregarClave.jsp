@@ -13,5 +13,21 @@
     </head>
     <body>
         
+    <%-- start web service invocation --%><hr/>
+    <%
+    try {
+	SW.Servidor_Service service = new SW.Servidor_Service();
+	SW.Servidor port = service.getServidorPort();
+	 // TODO initialize WS operation arguments here
+	int id = Integer.parseInt(request.getParameter("tbId"));
+	java.lang.String nombre = request.getParameter("tbNombre");
+	java.lang.String contrasena = request.getParameter("tbContrasena");
+	port.agregarEstacionClave(id, nombre, contrasena);
+        response.sendRedirect("EstacionClave.jsp");
+    } catch (Exception ex) {
+	// TODO handle custom exceptions here
+    }
+    %>
+    <%-- end web service invocation --%><hr/>
     </body>
 </html>

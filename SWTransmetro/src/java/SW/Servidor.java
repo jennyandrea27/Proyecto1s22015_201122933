@@ -57,11 +57,21 @@ public ArbolAVL avlEs_General=new ArbolAVL();
      * Web service operation
      */
     @WebMethod(operationName = "AgregarEstacionClave")
-    public void AgregarEstacion(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {
+    public void AgregarClave(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {
         //TODO write your implementation code here:
         Objeto o=new Objeto(nombre, contrasena, "es_clave", id);
         avlEs_Clave.Insertar(o);        
-        avlEs_Clave.GraficarAdmin();
+        avlEs_Clave.GraficarClave();
+    }
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarEstacionGeneral")
+    public void AgregarGeneral(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {
+        //TODO write your implementation code here:
+        Objeto o=new Objeto(nombre, contrasena, "es_clave", id);
+        avlEs_General.Insertar(o);        
+        avlEs_General.GraficarGeneral();
     }
     
 }

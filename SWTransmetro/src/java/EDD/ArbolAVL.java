@@ -256,6 +256,86 @@ public class ArbolAVL {
         }
     }
 
+    public void GraficarClave(){
+        String s="";
+        s+=GraficarClave(raiz);
+        GenerarDot(s);
+    }
+    private String GraficarClave(NodoAVL raiz){
+        String s="digraph G{\n";
+        s+="subgraph cluster999 {\n";
+        s+="style=filled;\n";
+        s+="color=skyblue;\n";
+        s+="node [shape=box,style=filled,color=coral];\n";
+        s+="edge [arrowhead=none,arrowtail=none];\n";   
+        s+="label=\"AVL Estaciones Clave\";\n";
+        s+=PreOrdenGraficarClave(raiz);
+        s+="}\n}\n";
+        return s;
+    }
+    private String PreOrdenGraficarClave(NodoAVL nodo){    
+            String s="";                
+            if(nodo!=null){
+                Objeto o=(Objeto)nodo.dato;                
+                s+="nodo"+o.id+"[label=\"";                               
+                s+="Id: "+o.id+"\n";
+                s+="Nombre: "+o.nombre+"\"];\n";                
+                String izq= PreOrdenGraficarClave(nodo.h_izq);
+                if(izq!=""){
+                    s+=izq;
+                    Objeto iz=(Objeto)nodo.h_izq.dato;
+                    s+="nodo"+o.id+" -> nodo"+iz.id+";\n";
+                }
+                String der=PreOrdenGraficarClave(nodo.h_der);
+                if(der!=""){
+                    s+=der;
+                    Objeto de=(Objeto)nodo.h_der.dato;                    
+                    s+="nodo"+o.id+" -> nodo"+de.id+";\n";
+                }
+            }
+            return s;
+    }
+    
+    public void GraficarGeneral(){
+        String s="";
+        s+=GraficarGeneral(raiz);
+        GenerarDot(s);
+    }
+    private String GraficarGeneral(NodoAVL raiz){
+        String s="digraph G{\n";
+        s+="subgraph cluster999 {\n";
+        s+="style=filled;\n";
+        s+="color=skyblue;\n";
+        s+="node [shape=box,style=filled,color=coral];\n";
+        s+="edge [arrowhead=none,arrowtail=none];\n";   
+        s+="label=\"AVL Estaciones Generales\";\n";
+        s+=PreOrdenGraficarGeneral(raiz);
+        s+="}\n}\n";
+        return s;
+    }
+    private String PreOrdenGraficarGeneral(NodoAVL nodo){    
+            String s="";                
+            if(nodo!=null){
+                Objeto o=(Objeto)nodo.dato;                
+                s+="nodo"+o.id+"[label=\"";                               
+                s+="Id: "+o.id+"\n";
+                s+="Nombre: "+o.nombre+"\"];\n";                
+                String izq= PreOrdenGraficarGeneral(nodo.h_izq);
+                if(izq!=""){
+                    s+=izq;
+                    Objeto iz=(Objeto)nodo.h_izq.dato;
+                    s+="nodo"+o.id+" -> nodo"+iz.id+";\n";
+                }
+                String der=PreOrdenGraficarGeneral(nodo.h_der);
+                if(der!=""){
+                    s+=der;
+                    Objeto de=(Objeto)nodo.h_der.dato;                    
+                    s+="nodo"+o.id+" -> nodo"+de.id+";\n";
+                }
+            }
+            return s;
+    }
+    
     public NodoAVL BuscarAdmin(String correo){    
 	return BuscarAdmin(raiz,correo);
     }
