@@ -19,6 +19,8 @@ public class Servidor {
 public ArbolAVL avlAdmin=new ArbolAVL();
 public ArbolAVL avlEs_Clave=new ArbolAVL();
 public ArbolAVL avlEs_General=new ArbolAVL();
+public ListaD listaBuses=new ListaD();
+public ListaD listaRutas=new ListaD();
     /**
      * This is a sample web service operation
      */
@@ -72,6 +74,17 @@ public ArbolAVL avlEs_General=new ArbolAVL();
         Objeto o=new Objeto(nombre, contrasena, "es_clave", id);
         avlEs_General.Insertar(o);        
         avlEs_General.GraficarGeneral();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarBus")
+    public void AgregarBus(@WebParam(name = "id") int id) {
+        //TODO write your implementation code here:
+        int idbus=id;
+        listaBuses.InsertarFinal(idbus);        
+        listaBuses.GraficarBus();
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package EDD;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -184,7 +186,7 @@ public class ListaD {
         String s="";
         return s;
     }
-    public String Graficar(){
+    public void GraficarBus(){
         String s="";
         s+="digraph G{\n";
         s+="subgraph cluster1{\n";
@@ -192,12 +194,13 @@ public class ListaD {
         s+="style=filled;\n";
         s+="color=green;\n";
         s+="edge [arrowhead=diamond,arrowtail=diamond,dir=both];\n";
-        s+="label=\"LISTA DOBLEMENTE ENLAZADA\";\n";
+        s+="label=\"LISTA DOBLEMENTE ENLAZADA\nBUSES\";\n";
         Nodo temp=pinicio;
         int cont=0;
         while(temp!=null){
             //declaracion de nodos
-               
+            int id=(int)temp.dato;
+            s+="nodo"+cont+"[label=\"Id: "+id+"\"];\n";
             //enlaces
             if(temp.siguiente!=null){
                 s+="nodo"+cont+"->"+"nodo"+(cont+1)+";\n";
@@ -206,7 +209,29 @@ public class ListaD {
             temp=temp.siguiente;
         }
         s+="}\n}";
-        return s;
+        GenerarDot(s);
     }
-    
+    private void GenerarDot(String s){
+        FileWriter dir=null;
+        PrintWriter print=null;
+        try{
+            dir=new FileWriter("C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            print=new PrintWriter(dir);
+            print.println(s);
+            print.close();
+            dir.close();            
+            GenerarPNG();
+        }catch(Exception er){
+            
+        }            
+    }
+    private void GenerarPNG(){
+        try{
+            ProcessBuilder proceso=new ProcessBuilder("C:\\Program Files\\Graphviz2.38\\bin\\dot.exe","-Tpng","-o","C:\\Users\\Jenny\\Desktop\\grafica.png","C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            proceso.redirectErrorStream(true);
+            proceso.start();
+        }catch(Exception er){
+            System.out.println(er.getMessage());    
+        }
+    }
 }

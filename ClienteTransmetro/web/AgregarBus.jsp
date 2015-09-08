@@ -1,6 +1,6 @@
 <%-- 
-    Document   : AgregarAdministrador
-    Created on : 31-ago-2015, 19:27:04
+    Document   : AgregarBus
+    Created on : 07-sep-2015, 18:20:39
     Author     : Jenny Andrea Simeon Perez
 --%>
 
@@ -9,23 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Administrador</title>
+        <title>Admin, Agregar Bus</title>
     </head>
     <body>
         
     <%-- start web service invocation --%><hr/>
     <%
     try {
-        String correo=request.getParameter("tbIdUsuario");
-        String contrasena=request.getParameter("tbContrasena");
 	SW.Servidor_Service service = new SW.Servidor_Service();
 	SW.Servidor port = service.getServidorPort();
 	 // TODO initialize WS operation arguments here
-	
-	// TODO process result here
-	port.agregarAdministrador(correo, contrasena);
-	//out.println("PostOrden = "+result);        
-        response.sendRedirect("Administrador.jsp");
+	int id = Integer.parseInt(request.getParameter("tbId"));
+	port.agregarBus(id);
+        response.sendRedirect("Buses.jsp");
     } catch (Exception ex) {
 	// TODO handle custom exceptions here
     }

@@ -4,6 +4,10 @@
 
 <xs:element name="AgregarAdministradorResponse" type="tns:AgregarAdministradorResponse"/>
 
+<xs:element name="AgregarBus" type="tns:AgregarBus"/>
+
+<xs:element name="AgregarBusResponse" type="tns:AgregarBusResponse"/>
+
 <xs:element name="AgregarEstacionClave" type="tns:AgregarEstacionClave"/>
 
 <xs:element name="AgregarEstacionClaveResponse" type="tns:AgregarEstacionClaveResponse"/>
@@ -41,6 +45,16 @@
 </xs:complexType>
 
 <xs:complexType name="AgregarEstacionGeneralResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="AgregarBus">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarBusResponse">
 <xs:sequence/>
 </xs:complexType>
 

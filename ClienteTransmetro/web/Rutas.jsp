@@ -38,6 +38,7 @@
                 <p class="green">
                     <div class="wrap">
                         <form action="AgregarAdministrador.jsp" class="login">                            
+                            <input type="text" name="tbId" value="" placeholder="Id Ruta" />  
                             <input type="text" name="tbNombre" value="" placeholder="Nombre" />  
                             <input type="text" name="tbRuta" value="" placeholder="Ruta" />                            
                             <br>

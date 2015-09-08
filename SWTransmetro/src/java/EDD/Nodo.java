@@ -13,14 +13,11 @@ import javax.swing.JButton;
  */
 public class Nodo {
     public Nodo siguiente,anterior;
-    public Object dato;
-    public JButton boton;
+    public Object dato;    
     
     public Nodo(Object dato){
         this.anterior=null;
         this.siguiente=null;
-        this.dato=dato;
-        boton=new JButton();
-        
+        this.dato=dato;                
     }
 }
