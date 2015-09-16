@@ -13,7 +13,7 @@
         
     </head>
     <body>
-        <h1>Bienvenido</h1>
+        <h1>Verificar Datos</h1>
     <%--metodo iniciar sesion
     <%-- start web service invocation --%><hr/>
     <%

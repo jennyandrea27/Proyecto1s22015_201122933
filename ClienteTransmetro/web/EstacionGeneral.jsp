@@ -26,7 +26,8 @@
                 <li><a href="Conductores.jsp" title="">Conductores</a></li>
                 <li><a href="Buses.jsp" title="">Buses</a></li>
                 <li><a href="Rutas.jsp" title="">Rutas</a></li>
-                <li><a href="IniciarSesion.jsp" title="">Cerrar Sesion</a></li>
+                <li><a href="AsignacionBuses.jsp" title="">Asignacion</a></li>                
+                <li><a href="IniciarSesion.jsp" title="">Salir</a></li>
             </ul>
         </div><!--final menu-->
         

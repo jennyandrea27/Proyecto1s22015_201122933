@@ -19,15 +19,13 @@ public class Servidor {
 public ArbolAVL avlAdmin=new ArbolAVL();
 public ArbolAVL avlEs_Clave=new ArbolAVL();
 public ArbolAVL avlEs_General=new ArbolAVL();
+public ArbolAVL avlConductores=new ArbolAVL();
 public ListaD listaBuses=new ListaD();
 public ListaD listaRutas=new ListaD();
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "metodo1")
-    public String metodo(@WebParam(name = "name") String txt) {
-        return "Hola, buenos dias " + txt + " !";
-    }
+    
 
     /**
      * Web service operation
@@ -39,7 +37,16 @@ public ListaD listaRutas=new ListaD();
             //administrador       
             return "1";
         }else{
-            
+            NodoAVL nodo=avlAdmin.BuscarAdmin(id);
+            Objeto admin=null;
+            try{
+                admin=(Objeto)nodo.dato;
+            }catch(Exception er){
+                
+            }
+            if(admin.contrasena.equals(contrasena)){
+                return "1";
+            }
         }
         return "-1";
     }
@@ -59,20 +66,24 @@ public ListaD listaRutas=new ListaD();
      * Web service operation
      */
     @WebMethod(operationName = "AgregarEstacionClave")
-    public void AgregarClave(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {
-        //TODO write your implementation code here:
+    public void AgregarClave(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {        
+        //crear estacion
         Objeto o=new Objeto(nombre, contrasena, "es_clave", id);
+        //insertar a AVL de estaciones clave
         avlEs_Clave.Insertar(o);        
+        //generar imagen del AVL
         avlEs_Clave.GraficarClave();
     }
     /**
      * Web service operation
      */
     @WebMethod(operationName = "AgregarEstacionGeneral")
-    public void AgregarGeneral(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {
-        //TODO write your implementation code here:
+    public void AgregarGeneral(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre, @WebParam(name = "contrasena") String contrasena) {        
+        //crear estacion
         Objeto o=new Objeto(nombre, contrasena, "es_clave", id);
+        //insertar en AVL
         avlEs_General.Insertar(o);        
+        //generar imagen AVL
         avlEs_General.GraficarGeneral();
     }
 
@@ -80,11 +91,54 @@ public ListaD listaRutas=new ListaD();
      * Web service operation
      */
     @WebMethod(operationName = "AgregarBus")
-    public void AgregarBus(@WebParam(name = "id") int id) {
-        //TODO write your implementation code here:
-        int idbus=id;
-        listaBuses.InsertarFinal(idbus);        
+    public void AgregarBus(@WebParam(name = "id") int id) {              
+        //insertar a lista
+        listaBuses.InsertarBus(id);        
+        //generar imagen de lista
         listaBuses.GraficarBus();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarRuta")
+    public void AgregarRuta(@WebParam(name = "id") int id, @WebParam(name = "nombre") String nombre) {                
+        //crear ruta, no tiene estaciones agregadas
+        Ruta ruta=new Ruta(nombre,id);
+        listaRutas.InsertarRuta(ruta);
+        listaRutas.GraficarRuta();
+    }
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarRutaClave")
+    public void AgregarRutaClave(@WebParam(name = "id_ruta") int id_ruta, @WebParam(name = "id_estacion") int id_estacion) {        
+        Ruta ruta=(Ruta)listaRutas.BuscarRuta(id_ruta).dato;
+        Objeto estacion=(Objeto)avlEs_Clave.BuscarEstacion(id_estacion);
+        ruta.listaEstaciones.InsertarFinal(estacion);
+        listaRutas.GraficarRuta();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarRutaGeneral")
+    public void AgregarRutaGeneral(@WebParam(name = "id_ruta") int id_ruta, @WebParam(name = "id_estacion") int id_estacion) {
+        Ruta ruta=(Ruta)listaRutas.BuscarRuta(id_ruta).dato;
+        Objeto estacion=(Objeto)avlEs_General.BuscarEstacion(id_estacion);
+        ruta.listaEstaciones.InsertarFinal(estacion);
+        listaRutas.GraficarRuta();
+        
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AgregarConductor")
+    public void AgregarConductor(@WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido, @WebParam(name = "id") int id, @WebParam(name = "contrasena") String contrasena) {
+        Objeto conductor=new Objeto(nombre, apellido, contrasena,"conductor", id);
+        avlConductores.Insertar(conductor);
+        avlConductores.GraficarConductor();
     }
     
 }

@@ -65,7 +65,7 @@ public class ListaD {
         }
     }
     
-    public void InsertarInicio(Object nuevo){
+    private void InsertarInicio(Object nuevo){
         Nodo nodo=new Nodo(nuevo);
         if(!Vacia()){
             pinicio.anterior=nodo;
@@ -77,7 +77,18 @@ public class ListaD {
             cantidad++;
         }
     }
-    
+    public void InsertarRuta(Object nuevo){
+        Ruta ruta=(Ruta)nuevo;
+        if(BuscarRuta(ruta.id)==null){
+            InsertarFinal(nuevo);
+        }
+    }
+    public void InsertarBus(Object nuevo){
+        int bus=(int)nuevo;
+        if(BuscarBus(bus)==null){
+            InsertarFinal(nuevo);
+        }
+    }
     public Object EliminarInicio(){
         if(!Vacia()){
             Object temp=pinicio.dato;
@@ -111,6 +122,28 @@ public class ListaD {
     }
     public int getCantidad(){
         return cantidad;
+    }
+    public Nodo BuscarRuta(int id){
+        Nodo temp=pinicio;        
+        while(temp!=null){
+            Ruta ruta=(Ruta)temp.dato;
+            if (ruta.id==id){
+                return temp;
+            }
+            temp=temp.siguiente;
+        }
+        return null;
+    }
+    public Nodo BuscarBus(int id){
+        Nodo temp=pinicio;        
+        while(temp!=null){
+            int bus=(int)temp.dato;
+            if (bus==id){
+                return temp;
+            }
+            temp=temp.siguiente;
+        }
+        return null;
     }
     public Nodo BuscarElemento(int pos){
         Nodo temp=pinicio;
@@ -209,6 +242,65 @@ public class ListaD {
             temp=temp.siguiente;
         }
         s+="}\n}";
+        //generar archivo .dot
+        GenerarDot(s);
+    }
+    public void GraficarRuta(){
+        String s="";
+        s+="digraph G{\n";
+        s+="subgraph cluster9999{\n";
+        s+="node [shape=parallelogram,style=filled,color=greenyellow];\n";
+        s+="style=filled;\n";
+        s+="color=lightblue;\n";
+        s+="edge [arrowhead=diamond,arrowtail=diamond,dir=both];\n";
+        s+="label=\"LISTA DOBLEMENTE ENLAZADA\nRUTAS\";\n";
+        Nodo temp=pinicio;
+        int cont=0;
+        while(temp!=null){
+            //declaracion de nodos
+            Ruta ruta=(Ruta)temp.dato;
+            s+="nodo"+cont+"[label=\"Id: "+ruta.id+"\n";
+            s+="Nombre: "+ruta.nombre+"\"];\n";
+            //enlaces
+            if(temp.siguiente!=null){
+                s+="nodo"+cont+"->nodo"+(cont+1)+";\n";
+            }
+            //generar lista de estaciones  
+            try{
+                Nodo e=ruta.listaEstaciones.pinicio;                
+                if(e!=null){                    
+                    Objeto estacion=(Objeto)e.dato;
+                    s+="nodo"+cont+"->node"+cont+estacion.id+";\n";
+                    s+="subgraph cluster"+ruta.id+"{\n";
+                    s+="node [style=filled,color=lightgray];\n";
+                    s+="style=filled;\n";
+                    s+="color=white;\n";
+                    s+="label=\"Estaciones ruta "+ruta.id+"\";\n";
+                    while(e!=null){
+                        estacion=(Objeto)e.dato;   
+                        //declaracion nodos
+                        s+="node"+cont+estacion.id+"[label=\"Estacion: "+estacion.id+"\n";
+                        s+="Nombre: "+estacion.nombre+"\n";
+                        s+="Tipo: "+estacion.tipo+"\"];\n";
+                        //enlaces
+                        if(e.siguiente!=null){
+                            Objeto estacion_sig=(Objeto)e.siguiente.dato;
+                            s+="node"+cont+estacion.id+"->node"+cont+estacion_sig.id+";\n";
+                        }
+                        e=e.siguiente;
+                    }
+                    s+="}\n";                    
+                }
+            }catch(Exception e){
+                
+            }
+            
+            
+            cont++;
+            temp=temp.siguiente;
+        }
+        s+="}\n}";
+        //generar archivo .dot
         GenerarDot(s);
     }
     private void GenerarDot(String s){

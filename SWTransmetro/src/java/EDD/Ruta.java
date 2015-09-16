@@ -10,6 +10,27 @@ package EDD;
  * @author Jenny Andrea Simeon Perez
  */
 public class Ruta {
-    String nombre;
-    ListaD listaEstaciones=new ListaD();
+    public String nombre;
+    public int id;
+    public ListaD listaEstaciones;
+
+    /**
+     * Constructor Ruta
+     * @param nombre
+     * @param id
+     * @param listaEstaciones 
+     */
+    public Ruta(String nombre, int id, ListaD listaEstaciones) {
+        this.nombre = nombre;
+        this.id = id;
+        this.listaEstaciones = listaEstaciones;
+    }
+
+    public Ruta(String nombre, int id) {
+        this.nombre = nombre;
+        this.id = id;
+        this.listaEstaciones=new ListaD();
+    }
+    
+    
 }

@@ -12,6 +12,7 @@ package EDD;
 public class Objeto {
     public String nombre,apellido,correo,contrasena,tipo;
     public int id;
+    ListaD listabuses;
     /**
      * Constructor conductor
      * @param nombre
@@ -26,6 +27,7 @@ public class Objeto {
         this.contrasena = contrasena;
         this.tipo = tipo;
         this.id = id;
+        this.listabuses=new ListaD();
     }
     /**
      * Constructor admin

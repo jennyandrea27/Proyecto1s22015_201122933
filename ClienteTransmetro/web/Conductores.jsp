@@ -25,7 +25,8 @@
                 <li><a class="current" href="Conductores.jsp" title="">Conductores</a></li>
                 <li><a href="Buses.jsp" title="">Buses</a></li>
                 <li><a href="Rutas.jsp" title="">Rutas</a></li>
-                <li><a href="IniciarSesion.jsp" title="">Cerrar Sesion</a></li>
+                <li><a href="AsignacionBuses.jsp" title="">Asignacion</a></li>                
+                <li><a href="IniciarSesion.jsp" title="">Salir</a></li>
             </ul>
         </div><!--final menu-->
         
@@ -37,10 +38,10 @@
             <div class="text_content">                
                 <p class="green">
                     <div class="wrap">
-                        <form action="AgregarAdministrador.jsp" class="login">
+                        <form action="AgregarConductor.jsp" class="login">
                             <input type="text" name="tbNombre" value="" placeholder="Nombre" />
                             <input type="text" name="tbApellido" value="" placeholder="Apellido" />
-                            <input type="text" name="tbId" value="" placeholder="Clave" />
+                            <input type="text" name="tbId" value="" placeholder="Id" />
                             <input type="password" name="tbContrasena" value="" placeholder="Contraseña" />
                             <br>
                             <input type="submit" value="Ingresar" name="bIngresar" />
