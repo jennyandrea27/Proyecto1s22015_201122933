@@ -412,23 +412,24 @@ public class ArbolAVL {
         }
         return null;      
     }
-    public Object BuscarEstacion(int id){
-        return BuscarEstacion(raiz,id);
+    public Object Buscar(int id){
+        return Buscar(raiz,id);
     }
-    private Object BuscarEstacion(NodoAVL raiz,int id){
+    private Object Buscar(NodoAVL raiz,int id){
         if(raiz!=null){
             Objeto o=(Objeto)raiz.dato;
             if(o.id ==id){
                 return raiz.dato;            
             }else if(o.id>id){
-                    return BuscarEstacion(raiz.h_izq,id);
+                    return Buscar(raiz.h_izq,id);
 
             }else if(o.id<id){
-                return BuscarEstacion(raiz.h_der,id);
+                return Buscar(raiz.h_der,id);
             }            
         }
         return null; 
     }
+  
     private String PreOrdenGraficarAdmin(NodoAVL nodo){    
             String s="";    
             int cont=0;

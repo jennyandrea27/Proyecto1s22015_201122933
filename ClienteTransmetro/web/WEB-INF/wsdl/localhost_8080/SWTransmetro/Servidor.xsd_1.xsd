@@ -32,6 +32,10 @@
 
 <xs:element name="AgregarRutaResponse" type="tns:AgregarRutaResponse"/>
 
+<xs:element name="Asignar" type="tns:Asignar"/>
+
+<xs:element name="AsignarResponse" type="tns:AsignarResponse"/>
+
 <xs:element name="IniciarSesion" type="tns:IniciarSesion"/>
 
 <xs:element name="IniciarSesionResponse" type="tns:IniciarSesionResponse"/>
@@ -47,18 +51,6 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="AgregarEstacionGeneral">
-<xs:sequence>
-<xs:element name="id" type="xs:int"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="AgregarEstacionGeneralResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="AgregarEstacionClave">
 <xs:sequence>
 <xs:element name="id" type="xs:int"/>
@@ -68,6 +60,18 @@
 </xs:complexType>
 
 <xs:complexType name="AgregarEstacionClaveResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="AgregarEstacionGeneral">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarEstacionGeneralResponse">
 <xs:sequence/>
 </xs:complexType>
 
@@ -127,6 +131,21 @@
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Asignar">
+<xs:sequence>
+<xs:element name="id_bus" type="xs:int"/>
+<xs:element name="id_ruta" type="xs:int"/>
+<xs:element name="id_conductor" type="xs:int"/>
+<xs:element name="h_inicio" type="xs:string" minOccurs="0"/>
+<xs:element name="fecha" type="xs:string" minOccurs="0"/>
+<xs:element name="h_final" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AsignarResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="AgregarRutaGeneral">

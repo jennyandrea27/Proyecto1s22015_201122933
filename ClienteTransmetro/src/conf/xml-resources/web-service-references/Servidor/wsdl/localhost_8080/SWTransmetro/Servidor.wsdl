@@ -4,6 +4,12 @@
 <xsd:import namespace="http://SW/" schemaLocation="http://localhost:8080/SWTransmetro/Servidor?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="AgregarEstacionGeneral">
+<part name="parameters" element="tns:AgregarEstacionGeneral"/>
+</message>
+<message name="AgregarEstacionGeneralResponse">
+<part name="parameters" element="tns:AgregarEstacionGeneralResponse"/>
+</message>
 <message name="IniciarSesion">
 <part name="parameters" element="tns:IniciarSesion"/>
 </message>
@@ -28,6 +34,12 @@
 <message name="AgregarRutaGeneralResponse">
 <part name="parameters" element="tns:AgregarRutaGeneralResponse"/>
 </message>
+<message name="AgregarConductor">
+<part name="parameters" element="tns:AgregarConductor"/>
+</message>
+<message name="AgregarConductorResponse">
+<part name="parameters" element="tns:AgregarConductorResponse"/>
+</message>
 <message name="AgregarBus">
 <part name="parameters" element="tns:AgregarBus"/>
 </message>
@@ -46,19 +58,17 @@
 <message name="AgregarEstacionClaveResponse">
 <part name="parameters" element="tns:AgregarEstacionClaveResponse"/>
 </message>
-<message name="AgregarEstacionGeneral">
-<part name="parameters" element="tns:AgregarEstacionGeneral"/>
+<message name="Asignar">
+<part name="parameters" element="tns:Asignar"/>
 </message>
-<message name="AgregarEstacionGeneralResponse">
-<part name="parameters" element="tns:AgregarEstacionGeneralResponse"/>
-</message>
-<message name="AgregarConductor">
-<part name="parameters" element="tns:AgregarConductor"/>
-</message>
-<message name="AgregarConductorResponse">
-<part name="parameters" element="tns:AgregarConductorResponse"/>
+<message name="AsignarResponse">
+<part name="parameters" element="tns:AsignarResponse"/>
 </message>
 <portType name="Servidor">
+<operation name="AgregarEstacionGeneral">
+<input wsam:Action="http://SW/Servidor/AgregarEstacionGeneralRequest" message="tns:AgregarEstacionGeneral"/>
+<output wsam:Action="http://SW/Servidor/AgregarEstacionGeneralResponse" message="tns:AgregarEstacionGeneralResponse"/>
+</operation>
 <operation name="IniciarSesion">
 <input wsam:Action="http://SW/Servidor/IniciarSesionRequest" message="tns:IniciarSesion"/>
 <output wsam:Action="http://SW/Servidor/IniciarSesionResponse" message="tns:IniciarSesionResponse"/>
@@ -75,6 +85,10 @@
 <input wsam:Action="http://SW/Servidor/AgregarRutaGeneralRequest" message="tns:AgregarRutaGeneral"/>
 <output wsam:Action="http://SW/Servidor/AgregarRutaGeneralResponse" message="tns:AgregarRutaGeneralResponse"/>
 </operation>
+<operation name="AgregarConductor">
+<input wsam:Action="http://SW/Servidor/AgregarConductorRequest" message="tns:AgregarConductor"/>
+<output wsam:Action="http://SW/Servidor/AgregarConductorResponse" message="tns:AgregarConductorResponse"/>
+</operation>
 <operation name="AgregarBus">
 <input wsam:Action="http://SW/Servidor/AgregarBusRequest" message="tns:AgregarBus"/>
 <output wsam:Action="http://SW/Servidor/AgregarBusResponse" message="tns:AgregarBusResponse"/>
@@ -87,17 +101,22 @@
 <input wsam:Action="http://SW/Servidor/AgregarEstacionClaveRequest" message="tns:AgregarEstacionClave"/>
 <output wsam:Action="http://SW/Servidor/AgregarEstacionClaveResponse" message="tns:AgregarEstacionClaveResponse"/>
 </operation>
-<operation name="AgregarEstacionGeneral">
-<input wsam:Action="http://SW/Servidor/AgregarEstacionGeneralRequest" message="tns:AgregarEstacionGeneral"/>
-<output wsam:Action="http://SW/Servidor/AgregarEstacionGeneralResponse" message="tns:AgregarEstacionGeneralResponse"/>
-</operation>
-<operation name="AgregarConductor">
-<input wsam:Action="http://SW/Servidor/AgregarConductorRequest" message="tns:AgregarConductor"/>
-<output wsam:Action="http://SW/Servidor/AgregarConductorResponse" message="tns:AgregarConductorResponse"/>
+<operation name="Asignar">
+<input wsam:Action="http://SW/Servidor/AsignarRequest" message="tns:Asignar"/>
+<output wsam:Action="http://SW/Servidor/AsignarResponse" message="tns:AsignarResponse"/>
 </operation>
 </portType>
 <binding name="ServidorPortBinding" type="tns:Servidor">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="AgregarEstacionGeneral">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="IniciarSesion">
 <soap:operation soapAction=""/>
 <input>
@@ -134,6 +153,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="AgregarConductor">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="AgregarBus">
 <soap:operation soapAction=""/>
 <input>
@@ -161,16 +189,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="AgregarEstacionGeneral">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="AgregarConductor">
+<operation name="Asignar">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

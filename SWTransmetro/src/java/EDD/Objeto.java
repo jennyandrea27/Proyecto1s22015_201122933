@@ -12,7 +12,7 @@ package EDD;
 public class Objeto {
     public String nombre,apellido,correo,contrasena,tipo;
     public int id;
-    ListaD listabuses;
+    public ListaD listabuses;
     /**
      * Constructor conductor
      * @param nombre

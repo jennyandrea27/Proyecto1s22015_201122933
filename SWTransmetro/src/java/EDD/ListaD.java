@@ -123,23 +123,23 @@ public class ListaD {
     public int getCantidad(){
         return cantidad;
     }
-    public Nodo BuscarRuta(int id){
+    public Object BuscarRuta(int id){
         Nodo temp=pinicio;        
         while(temp!=null){
             Ruta ruta=(Ruta)temp.dato;
             if (ruta.id==id){
-                return temp;
+                return temp.dato;
             }
             temp=temp.siguiente;
         }
         return null;
     }
-    public Nodo BuscarBus(int id){
+    public Object BuscarBus(int id){
         Nodo temp=pinicio;        
         while(temp!=null){
             int bus=(int)temp.dato;
             if (bus==id){
-                return temp;
+                return temp.dato;
             }
             temp=temp.siguiente;
         }
@@ -234,6 +234,36 @@ public class ListaD {
             //declaracion de nodos
             int id=(int)temp.dato;
             s+="nodo"+cont+"[label=\"Id: "+id+"\"];\n";
+            //enlaces
+            if(temp.siguiente!=null){
+                s+="nodo"+cont+"->"+"nodo"+(cont+1)+";\n";
+            }
+            cont++;
+            temp=temp.siguiente;
+        }
+        s+="}\n}";
+        //generar archivo .dot
+        GenerarDot(s);
+    }
+    public void GraficarAsignacion(){
+        String s="";
+        s+="digraph G{\n";
+        s+="subgraph cluster1{\n";
+        s+="node [shape=parallelogram,style=filled,color=forestgreen];\n";
+        s+="style=filled;\n";
+        s+="color=green;\n";
+        s+="edge [arrowhead=diamond,arrowtail=diamond,dir=both];\n";
+        s+="label=\"LISTA DOBLEMENTE ENLAZADA\nASIGNACION\";\n";
+        Nodo temp=pinicio;
+        int cont=0;
+        while(temp!=null){
+            //declaracion de nodos
+            NodoConductor nodo=(NodoConductor)temp.dato;
+            s+="nodo"+cont+"[label=\"Id Bus: "+nodo.bus+"\n";
+            s+="Id Ruta: "+nodo.ruta.id+", "+nodo.ruta.nombre+"\n";
+            s+="Hora Inicio: "+nodo.hora_inicio.toString()+"\n";
+            s+="Hora Final: "+nodo.hora_fin.toString()+"\n";
+            s+="Fecha: "+nodo.fecha.toString()+"\"];\n";
             //enlaces
             if(temp.siguiente!=null){
                 s+="nodo"+cont+"->"+"nodo"+(cont+1)+";\n";

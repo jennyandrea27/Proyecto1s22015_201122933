@@ -37,7 +37,7 @@
             <div class="text_content">                
                 <p class="green">
                     <div class="wrap">
-                        <form action="AgregarAdministrador.jsp" class="login">
+                        <form action="Asignar.jsp" class="login">
                             <input type="text" name="tbIdBus" value="" placeholder="Id Bus" />
                             <input type="text" name="tbIdRuta" value="" placeholder="Id Ruta" />
                             <input type="text" name="tbIdConductor" value="" placeholder="Id Conductor" />
