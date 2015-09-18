@@ -14,25 +14,29 @@
     </head>
     <body>
         <h1>Verificar Datos</h1>
-    <%--metodo iniciar sesion
+        
     <%-- start web service invocation --%><hr/>
     <%
     try {
-        String tbId=request.getParameter("tbIdUsuario");
-        String tbContr=request.getParameter("tbContrasena");
 	SW.Servidor_Service service = new SW.Servidor_Service();
 	SW.Servidor port = service.getServidorPort();
 	 // TODO initialize WS operation arguments here
-	java.lang.String id = tbId;
-	java.lang.String contrasena = tbContr;
+	java.lang.String id = request.getParameter("tbIdUsuario");
+	java.lang.String contrasena = request.getParameter("tbContrasena");
+	java.lang.String tipo = request.getParameter("tbTipo");
 	// TODO process result here
-	java.lang.String result = port.iniciarSesion(id, contrasena);
-        if(result.equals("1")){//administrador
+	java.lang.String result = port.iniciarSesion(id, contrasena, tipo);
+	if(result.equals("1")){//administrador
             response.sendRedirect("PAdmin.jsp");
+        }else if(result.equals("2")){
+            response.sendRedirect("PClave.jsp");
+        }else if(result.equals("3")){
+            response.sendRedirect("PGeneral.jsp");
+        }else if(result.equals("4")){
+            response.sendRedirect("PConductor.jsp");
         }else{
             response.sendRedirect("IniciarSesion.jsp");
         }
-	
     } catch (Exception ex) {
 	// TODO handle custom exceptions here
     }

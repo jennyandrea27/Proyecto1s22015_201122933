@@ -403,10 +403,10 @@ public class ArbolAVL {
             Objeto o=(Objeto)raiz.dato;
             if(o.correo.equals(correo)){
                 return raiz;            
-            }else if((o.correo.compareTo(correo))<0){
+            }else if((o.correo.compareTo(correo))>0){
                     return BuscarAdmin(raiz.h_izq,correo);
 
-            }else if((o.correo.compareTo(correo))>0){
+            }else if((o.correo.compareTo(correo))<0){
                 return BuscarAdmin(raiz.h_der,correo);
             }            
         }

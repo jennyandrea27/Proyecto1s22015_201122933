@@ -5,6 +5,7 @@
  */
 package EDD;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,10 +13,14 @@ import java.util.Date;
  * @author Jenny Andrea Simeon Perez
  */
 public class NodoConductor {
-    int bus;
-    Ruta ruta;
-    Date hora_inicio,hora_fin;
-    Date fecha;   
+    public int bus;
+    public Ruta ruta;
+    public Date hora_inicio,hora_fin;
+    public Date fecha;   
+    SimpleDateFormat formato_hora=new SimpleDateFormat("hh:mm:ss");
+    SimpleDateFormat formato_fecha=new SimpleDateFormat("dd:MM:yyyy");
+    public ListaD lista_horas;
+    
 /**
  * 
  * @param bus int
@@ -30,6 +35,13 @@ public class NodoConductor {
         this.hora_inicio = hora_inicio;
         this.hora_fin = hora_fin;
         this.fecha = fecha;
+        this.lista_horas=new ListaD();
+    }
+    public String getHora(Date hora){
+        return formato_hora.format(hora);
+    }
+    public String getFecha(Date fecha){
+        return formato_fecha.format(fecha);
     }
     
 }

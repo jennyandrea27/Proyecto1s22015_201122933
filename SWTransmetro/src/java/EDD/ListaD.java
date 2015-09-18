@@ -261,9 +261,9 @@ public class ListaD {
             NodoConductor nodo=(NodoConductor)temp.dato;
             s+="nodo"+cont+"[label=\"Id Bus: "+nodo.bus+"\n";
             s+="Id Ruta: "+nodo.ruta.id+", "+nodo.ruta.nombre+"\n";
-            s+="Hora Inicio: "+nodo.hora_inicio.toString()+"\n";
-            s+="Hora Final: "+nodo.hora_fin.toString()+"\n";
-            s+="Fecha: "+nodo.fecha.toString()+"\"];\n";
+            s+="Hora Inicio: "+nodo.getHora(nodo.hora_inicio)+"\n";
+            s+="Hora Final: "+nodo.getHora(nodo.hora_fin)+"\n";
+            s+="Fecha: "+nodo.getFecha(nodo.fecha)+"\"];\n";
             //enlaces
             if(temp.siguiente!=null){
                 s+="nodo"+cont+"->"+"nodo"+(cont+1)+";\n";

@@ -21,6 +21,7 @@
                 <form action="VerificarDatos.jsp" class="login">
                     <input type="text" name="tbIdUsuario" value="" placeholder="Usuario" />
                     <input type="password" name="tbContrasena" value="" placeholder="Contraseña" />
+                    <input type="text" name="tbTipo" value="" placeholder="Tipo Usuario" />
                     <br>
                     <input type="submit" value="Ingresar" name="bIngresar" />
 

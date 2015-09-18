@@ -23,34 +23,6 @@ public ArbolAVL avlEs_General=new ArbolAVL();
 public ArbolAVL avlConductores=new ArbolAVL();
 public ListaD listaBuses=new ListaD();
 public ListaD listaRutas=new ListaD();
-    /**
-     * This is a sample web service operation
-     */
-    
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "IniciarSesion")
-    public String IniciarSesion(@WebParam(name = "id") String id, @WebParam(name = "contrasena") String contrasena) {
-        //TODO write your implementation code here:
-        if(id.equals("admin")&&contrasena.equals("admin")){    
-            //administrador       
-            return "1";
-        }else{
-            NodoAVL nodo=avlAdmin.BuscarAdmin(id);
-            Objeto admin=null;
-            try{
-                admin=(Objeto)nodo.dato;
-            }catch(Exception er){
-                
-            }
-            if(admin.contrasena.equals(contrasena)){
-                return "1";
-            }
-        }
-        return "-1";
-    }
 
     /**
      * Web service operation
@@ -149,12 +121,71 @@ public ListaD listaRutas=new ListaD();
     public void Asignar(@WebParam(name = "id_bus") int id_bus, @WebParam(name = "id_ruta") int id_ruta, @WebParam(name = "id_conductor") int id_conductor, @WebParam(name = "h_inicio") String h_inicio, @WebParam(name = "fecha") String fecha, @WebParam(name = "h_final") String h_final) {
         Objeto conductor=(Objeto)avlConductores.Buscar(id_conductor);
         Ruta ruta=(Ruta)listaRutas.BuscarRuta(id_ruta);
-        Date hora_inicio=new Date(h_inicio);
-        Date hora_final=new Date(h_final);
-        Date fecha_=new Date(fecha);
+        Date hora_inicio=new Date();
+        Date hora_final=new Date();
+        Date fecha_=new Date();
         NodoConductor nodo=new NodoConductor(id_bus, ruta, hora_inicio, hora_final, fecha_);
         conductor.listabuses.InsertarFinal(nodo);
         conductor.listabuses.GraficarAsignacion();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "IniciarSesion")
+    public String IniciarSesion(@WebParam(name = "id") String id, @WebParam(name = "contrasena") String contrasena, @WebParam(name = "tipo") String tipo) {
+        if(id.equals("admin")&&contrasena.equals("admin")){    
+            //administrador       
+            return "1";
+        }else{
+            NodoAVL nodo=null;
+            switch(tipo){
+                case "admin":
+                    nodo=avlAdmin.BuscarAdmin(id);
+                    if(nodo!=null){
+                        Objeto admin=(Objeto)nodo.dato;
+                        if(admin.contrasena.equals(contrasena)){
+                            return "1";
+                        }else{                        
+                            return "Usuario admin y contraseña incorrectos";
+                        }
+                    }                    
+                    break;
+                case "clave":
+                    Objeto clave=(Objeto)avlEs_Clave.Buscar(Integer.parseInt(id));                   
+                    if(clave!=null){                        
+                        if(clave.contrasena.equals(contrasena)){
+                            return "2";
+                        }else{                        
+                            return "Usuario Estacion Clave y contraseña incorrectos";
+                        }
+                    }              
+                    break;
+                case "general":
+                    Objeto general=(Objeto)avlEs_General.Buscar(Integer.parseInt(id));                   
+                    if(general!=null){                        
+                        if(general.contrasena.equals(contrasena)){
+                            return "3";
+                        }else{                        
+                            return "Usuario Estacion General y contraseña incorrectos";
+                        }
+                    }              
+                    break; 
+                case "conductor":
+                    Objeto conductor=(Objeto)avlConductores.Buscar(Integer.parseInt(id));                   
+                    if(conductor!=null){                        
+                        if(conductor.contrasena.equals(contrasena)){
+                            return "4";
+                        }else{                        
+                            return "Usuario Conductor y contraseña incorrectos";
+                        }
+                    }              
+                    break;                    
+                default:
+            }
+            
+        }
+        return "-1";
     }
     
 }

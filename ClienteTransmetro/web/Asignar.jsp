@@ -28,7 +28,7 @@
 	port.asignar(idBus, idRuta, idConductor, hInicio, fecha, hFinal);
         response.sendRedirect("AsignacionBuses.jsp");
     } catch (Exception ex) {
-	// TODO handle custom exceptions here
+	out.println(ex.getMessage());
     }
     %>
     <%-- end web service invocation --%><hr/>
