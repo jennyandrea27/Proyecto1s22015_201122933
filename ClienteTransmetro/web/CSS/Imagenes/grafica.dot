@@ -1,0 +1,21 @@
+digraph G{
+subgraph cluster1{
+node [shape=parallelogram,style=filled,color=forestgreen];
+style=filled;
+color=green;
+edge [arrowhead=diamond,arrowtail=diamond,dir=both];
+label="LISTA DOBLEMENTE ENLAZADA
+ASIGNACION";
+nodo0[label="Id Bus: 5
+Id Ruta: 1, ruta1
+Hora Inicio: 03:22:13
+Hora Final: 03:22:13
+Fecha: 20:09:2015"];
+nodo0->nodo1;
+nodo1[label="Id Bus: 6
+Id Ruta: 2, ruta2
+Hora Inicio: 03:22:30
+Hora Final: 03:22:30
+Fecha: 20:09:2015"];
+}
+}

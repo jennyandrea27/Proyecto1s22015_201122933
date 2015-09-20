@@ -399,7 +399,7 @@ public class ListaD {
         FileWriter dir=null;
         PrintWriter print=null;
         try{
-            dir=new FileWriter("C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            dir=new FileWriter("C:\\Users\\Jenny\\Documents\\GitHub\\Proyecto1s22015_201122933\\ClienteTransmetro\\web\\CSS\\Imagenes\\grafica.dot");
             print=new PrintWriter(dir);
             print.println(s);
             print.close();
@@ -411,7 +411,7 @@ public class ListaD {
     }
     private void GenerarPNG(){
         try{
-            ProcessBuilder proceso=new ProcessBuilder("C:\\Program Files\\Graphviz2.38\\bin\\dot.exe","-Tpng","-o","C:\\Users\\Jenny\\Desktop\\grafica.png","C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            ProcessBuilder proceso=new ProcessBuilder("C:\\Program Files\\Graphviz2.38\\bin\\dot.exe","-Tpng","-o","C:\\Users\\Jenny\\Documents\\GitHub\\Proyecto1s22015_201122933\\ClienteTransmetro\\web\\CSS\\Imagenes\\grafica.png","C:\\Users\\Jenny\\Documents\\GitHub\\Proyecto1s22015_201122933\\ClienteTransmetro\\web\\CSS\\Imagenes\\grafica.dot");
             proceso.redirectErrorStream(true);
             proceso.start();
         }catch(Exception er){

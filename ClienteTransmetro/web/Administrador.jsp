@@ -43,6 +43,9 @@
                             <br>
                             <input type="submit" value="Ingresar" name="bIngresar" />
                         </form>
+                        <form method="POST" action="Graficar.jsp?tipo=administrador" class="login">                            
+                            <input type="submit" value="Garficar" name="bIngresar" />
+                        </form>
                     </div>
                 </p>
             

@@ -293,8 +293,8 @@ public class ArbolAVL {
     private void GenerarDot(String s){
         FileWriter dir=null;
         PrintWriter print=null;
-        try{
-            dir=new FileWriter("C:\\Users\\Jenny\\Desktop\\grafica.dot");
+        try{            
+            dir=new FileWriter("C:\\Users\\Jenny\\Documents\\GitHub\\Proyecto1s22015_201122933\\ClienteTransmetro\\web\\CSS\\Imagenes\\grafica.dot");
             print=new PrintWriter(dir);
             print.println(s);
             print.close();
@@ -306,7 +306,7 @@ public class ArbolAVL {
     }
     private void GenerarPNG(){
         try{
-            ProcessBuilder proceso=new ProcessBuilder("C:\\Program Files\\Graphviz2.38\\bin\\dot.exe","-Tpng","-o","C:\\Users\\Jenny\\Desktop\\grafica.png","C:\\Users\\Jenny\\Desktop\\grafica.dot");
+            ProcessBuilder proceso=new ProcessBuilder("C:\\Program Files\\Graphviz2.38\\bin\\dot.exe","-Tpng","-o","C:\\Users\\Jenny\\Documents\\GitHub\\Proyecto1s22015_201122933\\ClienteTransmetro\\web\\CSS\\Imagenes\\grafica.png","C:\\Users\\Jenny\\Documents\\GitHub\\Proyecto1s22015_201122933\\ClienteTransmetro\\web\\CSS\\Imagenes\\grafica.dot");
             proceso.redirectErrorStream(true);
             proceso.start();
         }catch(Exception er){
@@ -535,5 +535,31 @@ public class ArbolAVL {
             }           
         }        
         return null;
+    }
+    public String FormGenerales(){
+        return FormGenerales(raiz);
+    }
+    private String FormGenerales(NodoAVL raiz){
+        String s="";
+        if(raiz!=null){
+            Objeto estacion=(Objeto)raiz.dato;
+            s+="<form method= \"POST\" action=\"BuscarBusGeneral.jsp?id_estacion="+estacion.id+"\">\n";
+            s+="<%\n";//inicia codigo java en jsp
+                s+="String idestacion="+estacion.id+";\n";
+                s+="String idbus=request.getParameter(\"id_bus\");\n";
+                s+="out.println(\"<input type=\"text\" name=\"tbIdEstacion\" value=\"Estacion General "+estacion.id+"\" placeholder=\"Id Estacion\" disabled=\"true\"\");/>\n"
+                        +"if(idbus!=null){\n"
+                        +"out.println(\"<input type=\"text\" name=\"tbBus"+estacion.id+"\" value=\"+idbus+\" placeholder=\"Id Bus\" disabled=\"true\" />\");\n"
+                        + "}else{\n"
+                        +"out.println(\"<input type=\"text\" name=\"tbBus"+estacion.id+"\" value=\"\" placeholder=\"Bus\" disabled=\"true\"/>\");\n"
+                        +"}\n";
+            s+="%>\n";//termina codigo java en jsp
+            s+="<br>\n"
+                    +"<input type=\"submit\" value=\"Siguiente\" name=\"bSiguiente\" />\n"
+                    +"</form>\n";                        
+            s+=FormGenerales(raiz.h_izq);
+            s+=FormGenerales(raiz.h_der);
+        }                
+        return s;
     }
 }

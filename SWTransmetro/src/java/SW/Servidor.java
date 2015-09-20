@@ -187,8 +187,7 @@ public ListaD listaRutas=new ListaD();
                     }              
                     break;                    
                 default:
-            }
-            
+            }            
         }
         return "-1";
     }
@@ -213,5 +212,56 @@ public ListaD listaRutas=new ListaD();
         bus+="";
         return bus;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "FormGenerales")
+    public String FormGenerales() {        
+        return avlEs_General.FormGenerales();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "Graficar")
+    public void Graficar(@WebParam(name = "tipo") String tipo) {
+        switch(tipo){
+            case "administrador":
+                avlAdmin.GraficarAdmin();
+                break;
+            case "clave":
+                    avlEs_Clave.GraficarClave();
+                    break;
+                case "general":
+                    avlEs_General.GraficarGeneral();
+                    break; 
+                case "conductor":
+                    avlConductores.GraficarConductor();
+                    break;                    
+            default:
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "GraficarAsignacion_Horario")
+    public void GraficarAsignacion_Horario(@WebParam(name = "id_conductor") String id_conductor, @WebParam(name = "id_bus") String id_bus, @WebParam(name = "tipo") String tipo) {
+        int idconductor=Integer.parseInt(id_conductor);
+        int idbus=Integer.parseInt(id_conductor);
+        Objeto conductor=(Objeto)avlConductores.Buscar(idconductor);
+        switch(tipo){
+            case "asignacion":                        
+                conductor.listabuses.GraficarAsignacion();
+                break;
+            case"horario":                                
+                conductor.listabuses.GraficarHoras();
+                break;
+            default:
+        }
+    }
+
+
     
 }

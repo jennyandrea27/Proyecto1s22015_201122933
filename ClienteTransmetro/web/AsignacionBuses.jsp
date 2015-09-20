@@ -47,6 +47,12 @@
                             <br>
                             <input type="submit" value="Asignar" name="bAsignarr" />
                         </form>
+                        <form method="POST" action="GraficarAsignacion_Horario.jsp" class="login">                            
+                            <input type="text" name="tbIdConductor" value="" placeholder="Id Conductor" />
+                            <input type="text" name="tbIdBus" value="0" placeholder="Id Bus" />
+                            <input type="text" name="tbTipo" value="0" placeholder="Id Tipo" />
+                            <input type="submit" value="Garficar" name="bIngresar" />
+                        </form>
                     </div>
                 </p>
             
