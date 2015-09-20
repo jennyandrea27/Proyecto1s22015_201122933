@@ -29,7 +29,7 @@
 	if(result.equals("1")){//administrador
             response.sendRedirect("PAdmin.jsp");
         }else if(result.equals("2")){
-            response.sendRedirect("PClave.jsp");
+            response.sendRedirect("PClave.jsp?id_estacion="+id);
         }else if(result.equals("3")){
             response.sendRedirect("PGeneral.jsp");
         }else if(result.equals("4")){
@@ -37,8 +37,7 @@
         }else{
             response.sendRedirect("IniciarSesion.jsp");
         }
-    } catch (Exception ex) {
-	// TODO handle custom exceptions here
+    } catch (Exception ex) {	
     }
     %>
     <%-- end web service invocation --%><hr/>

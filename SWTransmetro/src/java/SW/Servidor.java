@@ -9,6 +9,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import EDD.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -88,7 +89,8 @@ public ListaD listaRutas=new ListaD();
     public void AgregarRutaClave(@WebParam(name = "id_ruta") int id_ruta, @WebParam(name = "id_estacion") int id_estacion) {        
         Ruta ruta=(Ruta)listaRutas.BuscarRuta(id_ruta);
         Objeto estacion=(Objeto)avlEs_Clave.Buscar(id_estacion);
-        ruta.listaEstaciones.InsertarFinal(estacion);
+        Objeto estacion_nueva=estacion.Duplicar();
+        ruta.listaEstaciones.InsertarFinal(estacion_nueva);
         listaRutas.GraficarRuta();
     }
 
@@ -99,7 +101,8 @@ public ListaD listaRutas=new ListaD();
     public void AgregarRutaGeneral(@WebParam(name = "id_ruta") int id_ruta, @WebParam(name = "id_estacion") int id_estacion) {
         Ruta ruta=(Ruta)listaRutas.BuscarRuta(id_ruta);
         Objeto estacion=(Objeto)avlEs_General.Buscar(id_estacion);
-        ruta.listaEstaciones.InsertarFinal(estacion);
+        Objeto estacion_nueva=estacion.Duplicar();
+        ruta.listaEstaciones.InsertarFinal(estacion_nueva);
         listaRutas.GraficarRuta();
         
     }
@@ -121,10 +124,12 @@ public ListaD listaRutas=new ListaD();
     public void Asignar(@WebParam(name = "id_bus") int id_bus, @WebParam(name = "id_ruta") int id_ruta, @WebParam(name = "id_conductor") int id_conductor, @WebParam(name = "h_inicio") String h_inicio, @WebParam(name = "fecha") String fecha, @WebParam(name = "h_final") String h_final) {
         Objeto conductor=(Objeto)avlConductores.Buscar(id_conductor);
         Ruta ruta=(Ruta)listaRutas.BuscarRuta(id_ruta);
+        //crear nueva ruta para asignarla al conductor
+        Ruta ruta_nueva=new Ruta(ruta);
         Date hora_inicio=new Date();
         Date hora_final=new Date();
         Date fecha_=new Date();
-        NodoConductor nodo=new NodoConductor(id_bus, ruta, hora_inicio, hora_final, fecha_);
+        NodoConductor nodo=new NodoConductor(id_bus, ruta_nueva, hora_inicio, hora_final, fecha_);
         conductor.listabuses.InsertarFinal(nodo);
         conductor.listabuses.GraficarAsignacion();
     }
@@ -140,7 +145,7 @@ public ListaD listaRutas=new ListaD();
         }else{
             NodoAVL nodo=null;
             switch(tipo){
-                case "admin":
+                case "administrador":
                     nodo=avlAdmin.BuscarAdmin(id);
                     if(nodo!=null){
                         Objeto admin=(Objeto)nodo.dato;
@@ -186,6 +191,27 @@ public ListaD listaRutas=new ListaD();
             
         }
         return "-1";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "BuscarBus")
+    public String BuscarBus(@WebParam(name = "id_estacion") int id_estacion, @WebParam(name = "tipo") String tipo) {
+        String bus="No hay buses en cola";
+        NodoConductor asignacion=(NodoConductor)avlConductores.BuscarBus(id_estacion);
+        if(asignacion!=null){            
+            bus=""+asignacion.bus;
+            //agregar bus a listabuses de la estacion para registrar los buses que han ingressado a ella
+            Date fecha=new Date();
+            SimpleDateFormat formato=new SimpleDateFormat("dd:MM:yyyy hh:mm:ss");
+            String fecha_hora=formato.format(fecha);
+            Ruta registro=new Ruta(fecha_hora, Integer.parseInt(bus));
+            asignacion.lista_horas.InsertarFinal(registro);
+            asignacion.lista_horas.GraficarHoras();
+        }
+        bus+="";
+        return bus;
     }
     
 }

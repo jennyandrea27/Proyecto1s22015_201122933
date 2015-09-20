@@ -13,6 +13,7 @@ public class Objeto {
     public String nombre,apellido,correo,contrasena,tipo;
     public int id;
     public ListaD listabuses;
+    public boolean visita=false;
     /**
      * Constructor conductor
      * @param nombre
@@ -28,6 +29,7 @@ public class Objeto {
         this.tipo = tipo;
         this.id = id;
         this.listabuses=new ListaD();
+        this.visita=false;        
     }
     /**
      * Constructor admin
@@ -55,6 +57,26 @@ public class Objeto {
         this.tipo = tipo;
         this.id = id;
     }
+    /**
+     * Constructor para duplicar objeto
+     * es_clave
+     * es_general
+     * @param nombre
+     * @param contrasena
+     * @param tipo
+     * @param id 
+     */
+    public Objeto Duplicar(){
+        Objeto o= new Objeto("", "", "", 0);
+        o.nombre=this.nombre;
+        o.apellido=this.apellido;
+        o.correo=this.correo;
+        o.contrasena=this.contrasena;
+        o.tipo=this.tipo;
+        o.id=this.id;
+        o.visita=false;
+        return o;
+    }        
            
     void Imprimir(){
         System.out.println("Objeto "+this.tipo+" "+this.nombre);

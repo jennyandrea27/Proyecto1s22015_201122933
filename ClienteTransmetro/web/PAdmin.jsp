@@ -25,7 +25,7 @@
                 <li><a href="Conductores.jsp" title="">Conductores</a></li>
                 <li><a href="Buses.jsp" title="">Buses</a></li>
                 <li><a href="Rutas.jsp" title="">Rutas</a></li>
-                <li><a href="AsignacionBusees.jsp" title="">Asignacion</a></li>                
+                <li><a href="AsignacionBuses.jsp" title="">Asignacion</a></li>                
                 <li><a href="IniciarSesion.jsp" title="">Salir</a></li>
             </ul>
         </div><!--final menu-->
@@ -46,19 +46,15 @@
     
         </div><!--final descripcion-->
 
-    <div id="footer"><!--inicio pie pagina-->
+        <div id="footer"><!--inicio pie pagina-->
 
-     	<div class="copyright">
-<a href="home.html"><img src="CSS/Imagenes/ing.png" alt="" title="" border="0"></a>
-        </div>
-    	<div class="footer_links"> 
-        <a href="#">Jenny Andrea Simeon Perez</a>
-        
-        </div><!--final pie pagina-->
-
-    
-    
-    </div>  
+            <div class="copyright">
+                <a href="home.html"><img src="CSS/Imagenes/ing.png" alt="" title="" border="0"></a>
+            </div>
+            <div class="footer_links"> 
+            <a href="#">Jenny Andrea Simeon Perez</a>        
+            </div><!--final pie pagina-->       
+        </div>  
 
         
         

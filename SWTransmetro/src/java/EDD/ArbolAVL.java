@@ -505,4 +505,35 @@ public class ArbolAVL {
             }
             return s;
     }
+    //recorrido preorden del arbol de conductores, para 
+    public Object BuscarBus(int id_estacion){
+        return InOrdenBuscarBus(raiz, id_estacion);
+    }
+    private Object InOrdenBuscarBus(NodoAVL raiz,int id){        
+        NodoConductor izq=null;
+        NodoConductor der=null;
+        if(raiz!=null){
+            Objeto conductor=(Objeto)raiz.dato;
+            if(!conductor.listabuses.Vacia()){
+                NodoConductor asignacion=(NodoConductor)conductor.listabuses.Recorrer(id);
+                if(asignacion!=null){//se encontro la estacion en este nodo, 
+                    //se devuelve la asignacion para buscar el bus que corresponde
+                    return asignacion;
+                }else{
+                    //buscar en el hijo izquierdo
+                    izq=(NodoConductor)InOrdenBuscarBus(raiz.h_izq, id);
+                    if(izq!=null){
+                        return izq;
+                    }else{
+                        //buscar en el hijo derecho
+                        der=(NodoConductor)InOrdenBuscarBus(raiz.h_der, id);
+                        if(der!=null){
+                            return der;
+                        }
+                    }
+                }
+            }           
+        }        
+        return null;
+    }
 }

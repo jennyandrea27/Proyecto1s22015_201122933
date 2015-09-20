@@ -36,9 +36,26 @@
 
 <xs:element name="AsignarResponse" type="tns:AsignarResponse"/>
 
+<xs:element name="BuscarBus" type="tns:BuscarBus"/>
+
+<xs:element name="BuscarBusResponse" type="tns:BuscarBusResponse"/>
+
 <xs:element name="IniciarSesion" type="tns:IniciarSesion"/>
 
 <xs:element name="IniciarSesionResponse" type="tns:IniciarSesionResponse"/>
+
+<xs:complexType name="BuscarBus">
+<xs:sequence>
+<xs:element name="id_estacion" type="xs:int"/>
+<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BuscarBusResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="AgregarRutaClave">
 <xs:sequence>
@@ -88,6 +105,16 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="AgregarBus">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarBusResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="AgregarAdministrador">
 <xs:sequence>
 <xs:element name="correo" type="xs:string" minOccurs="0"/>
@@ -96,16 +123,6 @@
 </xs:complexType>
 
 <xs:complexType name="AgregarAdministradorResponse">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="AgregarBus">
-<xs:sequence>
-<xs:element name="id" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="AgregarBusResponse">
 <xs:sequence/>
 </xs:complexType>
 

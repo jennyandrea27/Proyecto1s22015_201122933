@@ -26,6 +26,15 @@ public class Ruta {
         this.listaEstaciones = listaEstaciones;
     }
 
+    public Ruta(Ruta temp) {
+        this.nombre=temp.nombre;
+        this.id=temp.id;
+        //recorrer lista temp para agregarla a actual
+        this.listaEstaciones=temp.listaEstaciones.Duplicar();        
+    }
+    
+    
+
     public Ruta(String nombre, int id) {
         this.nombre = nombre;
         this.id = id;

@@ -145,6 +145,43 @@ public class ListaD {
         }
         return null;
     }
+    public Object Recorrer(int id){
+        //metodo que verifica las asignaciones de un conductor, manda a llamar al metodo BuscarEstacion
+        Nodo temp=pinicio;
+        Objeto estacion=null;
+        while(temp!=null){
+            //Nodo contiene todos los datos de la asignacion
+            NodoConductor asig=(NodoConductor)temp.dato;
+            Ruta ruta=asig.ruta;
+            if(ruta!=null){                
+                estacion=(Objeto)ruta.listaEstaciones.BuscarEstacion(id);
+                if(estacion!=null){
+                    return asig;
+                }
+            }            
+            temp=temp.siguiente;
+        }
+        return null;
+    }
+    public Object BuscarEstacion(int id){
+        //recorre la lista de estaciones, si no ha sido visitada, se cambia variable visita y retorna la estacion
+        //de lo contrario no existe esta estacion en esta ruta
+        if(!Vacia()){            
+            Nodo temp=pinicio;        
+            while(temp!=null){
+                Objeto estacion=(Objeto)temp.dato;
+                if(estacion.visita==false){
+                    if (estacion.id==id){                    
+                        estacion.visita=true;
+                        return estacion;                    
+                    }
+                    return null;                    
+                }
+                temp=temp.siguiente;
+            }
+        }
+        return null;
+    }
     public Nodo BuscarElemento(int pos){
         Nodo temp=pinicio;
         int num=0;
@@ -323,9 +360,34 @@ public class ListaD {
                 }
             }catch(Exception e){
                 
-            }
-            
-            
+            }                        
+            cont++;
+            temp=temp.siguiente;
+        }
+        s+="}\n}";
+        //generar archivo .dot
+        GenerarDot(s);
+    }
+    public void GraficarHoras(){
+        String s="";
+        s+="digraph G{\n";
+        s+="subgraph cluster9999{\n";
+        s+="node [shape=parallelogram,style=filled,color=greenyellow];\n";
+        s+="style=filled;\n";
+        s+="color=lightblue;\n";
+        s+="edge [arrowhead=diamond,arrowtail=diamond,dir=both];\n";
+        s+="label=\"LISTA DOBLEMENTE ENLAZADA\nHORARIOS\";\n";
+        Nodo temp=pinicio;
+        int cont=0;
+        while(temp!=null){
+            //declaracion de nodos
+            Ruta ruta=(Ruta)temp.dato;
+            s+="nodo"+cont+"[label=\"Fecha: "+ruta.nombre+"\n";
+            s+="Bus: "+ruta.id+"\"];\n";
+            //enlaces
+            if(temp.siguiente!=null){
+                s+="nodo"+cont+"->nodo"+(cont+1)+";\n";
+            }            
             cont++;
             temp=temp.siguiente;
         }
@@ -355,5 +417,16 @@ public class ListaD {
         }catch(Exception er){
             System.out.println(er.getMessage());    
         }
+    }
+    public ListaD Duplicar(){
+        Nodo temp=pinicio;
+        ListaD nueva=new ListaD();
+        while(temp!=null){
+            Objeto o=(Objeto)temp.dato;
+            Objeto nuevo=o.Duplicar();
+            nueva.InsertarFinal(nuevo);
+            temp=temp.siguiente;
+        }
+        return nueva;
     }
 }

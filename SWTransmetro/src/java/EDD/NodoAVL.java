@@ -12,7 +12,7 @@ package EDD;
 public class NodoAVL {
     int fe;
     NodoAVL  h_izq,h_der;
-    public Object dato;
+    public Object dato;    
     
     /**
      * Constructor NodoAVL
@@ -22,7 +22,7 @@ public class NodoAVL {
         this.dato=dato;
         this.fe=0;
         this.h_der=null;
-        this.h_izq=null;
+        this.h_izq=null;     
     }
     
 }

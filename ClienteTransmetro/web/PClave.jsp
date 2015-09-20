@@ -16,17 +16,36 @@
         <div id="header">
     	<div id="logo"><a href="#"><img src="CSS/Imagenes/transmetro.png" alt="" title="" border="0" /></a></div>
         
+        <div id="menu"><!--inicio menu-->
+            <ul>                                                                       
+                <li><a href="IniciarSesion.jsp" title="">Salir</a></li>
+            </ul>
+        </div><!--final menu-->
+        
         <div class="green_box"><!--inicio descripcion-->
             <div class="clock">
-            <img src="CSS/Imagenes/admin.png" alt="" title="">             
+            <img src="CSS/Imagenes/estacionclave.png" alt="" title="">             
             </div>
             <div class="text_content">                
                 <p class="green">
                     <div class="wrap">
-                        <form action="AgregarBus.jsp" class="login">
-                            <input type="text" name="tbId" value="" placeholder="Id Bus" />                            
+                        <%if(request.getParameter("id_bus")!=null){%>
+                            <form method="POST" action="BuscarBus.jsp?id_estacion=<%=request.getParameter("id_estacion")%>&id_bus=<%=request.getParameter("id_bus")%>" class="login">
+                        <%}else{%>        
+                            <form method="POST" action="BuscarBus.jsp?id_estacion=<%=request.getParameter("id_estacion")%>" class="login">
+                            <%}
+                                String id=request.getParameter("id_estacion");
+                                out.println("<input type=\"text\" name=\"tbIdEstacion\" value=\"Estacion Clave "+id+"\" placeholder=\"Id Estacion\" disabled=\"true\" />");
+                            
+                            if(request.getParameter("id_bus")!=null){
+                                    String id_bus=request.getParameter("id_bus"); 
+                                    out.println("<input type=\"text\" name=\"tbBus\" value=\""+id_bus+"\" placeholder=\"Id Bus\" disabled=\"true\" />"); 
+                            }else{
+                                out.println("<input type=\"text\" name=\"tbBus\" value=\"\" placeholder=\"Bus\" disabled=\"true\"/>");
+                            }
+                            %>
                             <br>
-                            <input type="submit" value="Ingresar" name="bIngresar" />
+                            <input type="submit" value="Siguiente" name="bSiguiente" />
                         </form>
                     </div>
                 </p>
@@ -34,6 +53,14 @@
             </div>  
     
         </div><!--final descripcion-->
+        <div id="footer"><!--inicio pie pagina-->
+            <div class="copyright">
+                <a href="home.html"><img src="CSS/Imagenes/ing.png" alt="" title="" border="0"></a>
+            </div>
+            <div class="footer_links"> 
+                <a href="#">Jenny Andrea Simeon Perez</a>        
+            </div><!--final pie pagina-->       
+        </div>  
         
     </body>
 </html>

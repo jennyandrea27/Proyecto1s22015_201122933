@@ -19,7 +19,7 @@ public class NodoConductor {
     public Date fecha;   
     SimpleDateFormat formato_hora=new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat formato_fecha=new SimpleDateFormat("dd:MM:yyyy");
-    public ListaD lista_horas;
+    public ListaD lista_horas;    
     
 /**
  * 

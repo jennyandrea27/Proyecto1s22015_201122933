@@ -41,7 +41,7 @@
                             <input type="text" name="tbIdBus" value="" placeholder="Id Bus" />
                             <input type="text" name="tbIdRuta" value="" placeholder="Id Ruta" />
                             <input type="text" name="tbIdConductor" value="" placeholder="Id Conductor" />
-                            <input type="time" name="tbInicio" value="" placeholder="Hora Inicio" />
+                             
                             <input type="time" name="tbFinal" value="" placeholder="Hora Fin" />
                             <input type="date" name="tbFecha" value="" placeholder="Fecha" />
                             <br>
